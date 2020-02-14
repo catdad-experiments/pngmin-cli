@@ -25,6 +25,7 @@
     "end-of-stream": "^1.4.4",
     "eslint": "^5.16.0",
     "fs-extra": "^8.1.0",
+    "jimp": "^0.9.3",
     "mocha": "^7.0.1",
     "node-fetch": "^2.6.0",
     "rootrequire": "^1.0.0"

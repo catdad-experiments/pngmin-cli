@@ -2,13 +2,13 @@
 
 const { spawn } = require('child_process');
 const path = require('path');
-const crypto = require('crypto');
 
 const { expect } = require('chai');
 const fs = require('fs-extra');
 const eos = require('end-of-stream');
 const root = require('rootrequire');
 const isPng = require('is-png');
+const jimp = require('jimp');
 
 describe('pngmin-cli', () => {
   const exec = async (args, options = {}, input = Buffer.from('')) => {
@@ -41,14 +41,21 @@ describe('pngmin-cli', () => {
     });
   };
 
-  const hash = buffer => crypto.createHash('sha256').update(buffer).digest('hex');
-
   it('reads from stdin and writes to stdout', async () => {
     const input = await fs.readFile(path.resolve(root, 'temp', '0002.png'));
     const { stdout, stderr, err } = await exec([], {}, input);
 
     expect(isPng(stdout)).to.equal(true, 'output was not a PNG image');
-    expect(hash(stdout)).to.equal('8da4f69b6808cdbb659f9a32b086c1c1b0e2473bcc62bb50904e0ad1d2706b8c');
+    // the test image goes from 36K to 14K
+    expect(stdout.length).to.be.below(input.length / 2);
+
+    const inImage = await jimp.read(input);
+    const outImage = await jimp.read(stdout);
+
+    expect(outImage.hash())
+      .to.equal(inImage.hash())
+      .and.to.equal('ci06j0qw3Ew');
+
     expect(stderr.toString()).to.equal('');
     expect(err).to.have.property('code', 0);
   });
