@@ -6,8 +6,8 @@
 [![npm-downloads][npm-downloads.svg]][npm.link]
 [![npm-version][npm-version.svg]][npm.link]
 
-[travis.svg]: https://travis-ci.org/catdad-experiments/pngmin-cli.svg?branch=master
-[travis.link]: https://travis-ci.org/catdad-experiments/pngmin-cli
+[travis.svg]: https://travis-ci.com/catdad-experiments/pngmin-cli.svg?branch=master
+[travis.link]: https://travis-ci.com/catdad-experiments/pngmin-cli
 [npm-downloads.svg]: https://img.shields.io/npm/dm/pngmin-cli.svg
 [npm.link]: https://www.npmjs.com/package/pngmin-cli
 [npm-version.svg]: https://img.shields.io/npm/v/pngmin-cli.svg
