@@ -1,0 +1,43 @@
+language: node_js
+
+env:
+  global:
+    - FORCE_COLOR=1
+
+install:
+  - npm install
+
+script:
+  - npm test
+
+jobs:
+  include:
+    - stage: test
+      os: linux
+      node_js: '12'
+    - stage: test
+      os: osx
+      node_js: '10'
+    - stage: test
+      os: windows
+      node_js: '8'
+    - stage: test
+      os: osx
+      node_js: node
+    - stage: test
+      os: linux
+      node_js: '10'
+    - stage: npm release
+      if: tag IS present
+      os: linux
+      node_js: '12'
+      install: skip
+      script: echo "Deploying to npm ..."
+      deploy:
+        provider: npm
+        email: vatev.1+npm@gmail.com
+        api_key:
+          secure: foKEikyC1QP/6kFb8AGTKy4zzr4Fr/nOewnsOlRpiXC8cwJ8bt6bc1pG2upHp7TyV1oW0O+1MijHJIBdJy45/G7IYeZHQ5r75IQKgodVPg34NxIpEn/sJLOshDDGWX9Y4/3rltJMCSzKvgJurnaWo5HA9yhue2uSXZFLjntP9DT2ArKN8w61yewLXe5DfQhCWBbkw7530Wdd19MjnN1DwS1QiTNbIF9VivyhIUhoDIt/GULjhMEPs91axvUEwBBm43ZNtBSBUM7VmxZ/gpr7y5KToU9FhELG3j2vOqf/n2Ld9xKqd5TwDEQrrxg0zeSY4DL04EmfKPMQwyxbR1sQ72Z7mMWDC1HH06sPYO+fu9BxVSGNbyddEQXGjbeNxwGkSwaf7bUIaAkjO2RKAa8whBukT44mMf63dk16uA4llT+MhtbyzPSJ5Dd4OLud6j37h6XmH5v0RzQBfHsGbbt4GbVXl46R69ErIEF1f/AOigXzAZn0RTFL6LIYQYFCTW3aFnB7O/pWowbJRD2O1XeOSZl3EvIYqzmGY5nohcVYRntEIEJCNHtnbz2/Wuy5zOOgCmDtOFJPLk5vFHRxlBRnCd4azigWL1PoniWOAE2MMvPyREAssiK1aBbPL0lbcMGAXD1pBHZkf7NG9WedRSeNoYoStfQ0lOmzlsPPBW6/Y/g=
+        on:
+          tags: true
+          repo: catdad-experiments/pngmin-cli
