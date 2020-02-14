@@ -37,5 +37,14 @@
     "get-stdin": "^7.0.0",
     "imagemin-pngquant": "^8.0.0",
     "is-png": "^2.0.0"
-  }
+  },
+  "keywords": [
+    "png",
+    "cli",
+    "imagemin",
+    "optimize",
+    "pngquant",
+    "pipe",
+    "piping"
+  ]
 }
