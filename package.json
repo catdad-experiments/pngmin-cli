@@ -5,6 +5,9 @@
   "bin": {
     "pngmin-cli": "./bin.js"
   },
+  "files": [
+    "bin.js"
+  ],
   "scripts": {
     "pretest": "node scripts/images.js",
     "test:only": "mocha --slow 0 bin.test.js",
