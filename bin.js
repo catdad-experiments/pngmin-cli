@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-const pngquant = require('imagemin-pngquant');
 const stdin = require('get-stdin');
+const pngquant = require('imagemin-pngquant');
 const isPng = require('is-png');
 
 (async () => {
